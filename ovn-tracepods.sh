@@ -84,7 +84,7 @@ function trace()
 			if [[ -n "${SRCPORT}" ]]
 			then
 				echo "==================================="
-        echo "Source pod      =	${SRCPOD}"
+        			echo "Source pod      =	${SRCPOD}"
 				echo "Source node     = 	${NODE}"
 				echo "Destination pod = 	${DSTPOD}"
 				echo "==================================="
@@ -93,13 +93,13 @@ function trace()
 				oc exec -it ${SBDBLEADER} -n openshift-ovn-kubernetes -c northd -- /bin/bash -c "ovn-trace --ct new ${NODE} 'inport==\"${SRCNS}_${SRCPOD}\" && eth.src==${SRCMAC} && eth.dst==${DSTMAC} && ${PROTO} && ${PROTO}.src==${SRCPORT} && ${PROTO}.dst==${DSTPORT} && ip4.src==${SRCIP} && ip4.dst==${DSTIP} && ip.ttl==${TTL}'"
 
 			else
-        echo ""
-        echo "==================================="
-        echo "Source pod      =	${SRCPOD}"
-        echo "Source node     =         ${NODE}"
-        echo "Destination pod =         ${DSTPOD}"
-        echo "==================================="
-        echo ""
+        			echo ""
+        			echo "==================================="
+        			echo "Source pod      =	${SRCPOD}"
+        			echo "Source node     =         ${NODE}"
+        			echo "Destination pod =         ${DSTPOD}"
+        			echo "==================================="
+        			echo ""
 				echo "Executing trace without source port."
 				oc exec -it ${SBDBLEADER} -n openshift-ovn-kubernetes -c northd -- /bin/bash -c "ovn-trace --ct new ${NODE} 'inport==\"${SRCNS}_${SRCPOD}\" && eth.src==${SRCMAC} && eth.dst==${DSTMAC} && ${PROTO} && ${PROTO}.dst==${DSTPORT} && ip4.src==${SRCIP} && ip4.dst==${DSTIP} && ip.ttl==${TTL}'"
 			fi
